@@ -1,0 +1,52 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: 04_Sessions_Storage\241_TestWingify.spec.ts >> go to dashboard- no login3
+- Location: tests\04_Sessions_Storage\241_TestWingify.spec.ts:22:5
+
+# Error details
+
+```
+Error: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL
+Call log:
+  - navigating to "", waiting until "load"
+
+```
+
+# Test source
+
+```ts
+  1  | import {test,expect} from "@playwright/test";
+  2  | 
+  3  | test.use(
+  4  |     {
+  5  |         storageState:'./user-session.json'
+  6  |     }
+  7  | );
+  8  | 
+  9  | test('go to dashboard- no login1',async({page})=>{
+  10 |     await page.goto("");
+  11 |     await expect(page).toHaveURL(/dashboard/);
+  12 |     console.log("Dashboard loaded");
+  13 |     await page.waitForTimeout(3000);
+  14 | });
+  15 | 
+  16 | test('go to dashboard- no login2',async({page})=>{
+  17 |     await page.goto("");
+  18 |     await expect(page).toHaveURL(/dashboard/);
+  19 |     console.log("Dashboard loaded");
+  20 |     await page.waitForTimeout(3000);
+  21 | });
+  22 | test('go to dashboard- no login3',async({page})=>{
+> 23 |     await page.goto("");
+     |                ^ Error: page.goto: Protocol error (Page.navigate): Cannot navigate to invalid URL
+  24 |     await expect(page).toHaveURL(/dashboard/);
+  25 |     console.log("Dashboard loaded");
+  26 |     await page.waitForTimeout(3000);
+  27 | });
+```
